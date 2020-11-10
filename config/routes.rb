@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'homes#show'
+
+  authenticated do
+    root 'dashboards#show', as: 'authenticated_root'
+  end
+
+  unauthenticated do
+    root 'homes#show', as: 'unauthenticated_root'
+  end
 end
