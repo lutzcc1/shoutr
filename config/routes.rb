@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     root 'homes#show', as: 'unauthenticated_root'
   end
 
-  resources :shouts, only: [:create]
+  resources :shouts, only: [:create, :show]
+  resources :users, only: [:show]
 end
