@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   unauthenticated do
     root 'homes#show', as: 'unauthenticated_root'
   end
+
+  resources :shouts, only: [:create]
 end
