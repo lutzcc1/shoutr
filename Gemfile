@@ -24,6 +24,10 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 
+gem 'cloudinary'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'byebug'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
