@@ -1,11 +1,6 @@
 <div>
   <%= link_to shout.username, shout.user %>
-  <% case shout.content_type %>
-  <% when 'TextShout' %>
-    <%= shout.content.body %>
-  <% when 'PhotoShout' %>
-    <%= cl_image_tag shout.content.photo.key, width: 300, height: 300 %>
-  <% end %>
+  <%= render shout.content %>
   <%= link_to shout do %>
     <%= time_ago_in_words(shout.created_at) %> ago
   <% end %>
