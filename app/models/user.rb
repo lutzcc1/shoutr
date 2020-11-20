@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validate :validate_username
 
   has_many :shouts, dependent: :destroy
+  has_many :likes
+  has_many :liked_shouts, through: :likes, source: :shout
 
   attr_writer :login
 
@@ -33,5 +35,17 @@ class User < ApplicationRecord
     if User.where(email: username).exists?
       errors.add(:username, :invalid)
     end
+  end
+
+  def like(shout)
+    liked_shouts << shout
+  end
+
+  def unlike(shout)
+    liked_shouts.destroy(shout)
+  end
+
+  def liked? (shout)
+    liked_shouts.include? shout
   end
 end
