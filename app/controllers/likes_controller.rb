@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     current_user.like(shout)
     redirect_to authenticated_root_path

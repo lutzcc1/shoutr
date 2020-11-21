@@ -45,7 +45,7 @@ class User < ApplicationRecord
     liked_shouts.destroy(shout)
   end
 
-  def liked? (shout)
+  def liked?(shout)
     liked_shouts.include? shout
   end
 end
