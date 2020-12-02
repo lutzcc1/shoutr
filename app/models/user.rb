@@ -12,6 +12,11 @@ class User < ApplicationRecord
   has_many :likes
   has_many :liked_shouts, through: :likes, source: :shout
 
+  has_many :following_relationships, foreign_key: :follower_id#, foreign_key: :followed_user_id
+  has_many :followed_users, through: :following_relationships
+
+  has_many :followers, through: :following_relationships
+
   attr_writer :login
 
   def login
@@ -35,6 +40,18 @@ class User < ApplicationRecord
     if User.where(email: username).exists?
       errors.add(:username, :invalid)
     end
+  end
+
+  def follow(user)
+    followed_users << user
+  end
+
+  def unfollow(user)
+    followed_users.destroy(user)
+  end
+
+  def following?(user)
+    followed_users.include? user
   end
 
   def like(shout)

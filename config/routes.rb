@@ -15,5 +15,10 @@ Rails.application.routes.draw do
       delete "unlike" => "likes#destroy"
     end
   end
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    member do
+      post "follow" => "followed_users#create"
+      delete "unfollow" => "followed_users#destroy"
+    end
+  end
 end
