@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show] do
+    resources :followers, only: [:index]
     member do
       post "follow" => "followed_users#create"
       delete "unfollow" => "followed_users#destroy"

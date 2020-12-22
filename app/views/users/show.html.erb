@@ -3,5 +3,7 @@
 <h1><%= @user.username %></h1>
 
 <%= follow_button @user %>
+<%= link_to 'followers', user_followers_path(@user) %>
+<%= @user.followers_count %>
 
 <%= render @shouts %>
