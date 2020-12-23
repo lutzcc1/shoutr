@@ -9,12 +9,16 @@ Rails.application.routes.draw do
     root 'homes#show', as: 'unauthenticated_root'
   end
 
-  resources :shouts, only: [:create, :show] do
+  post "text_shouts" => "shouts#create", defaults: { content_type: TextShout }
+  post "photo_shouts" => "shouts#create", defaults: { content_type: PhotoShout }
+
+  resources :shouts, only: [:show] do
     member do
       post "like" => "likes#create"
       delete "unlike" => "likes#destroy"
     end
   end
+
   resources :users, only: [:show] do
     resources :followers, only: [:index]
     member do
