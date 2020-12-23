@@ -32,10 +32,6 @@ class User < ApplicationRecord
     @login || self.username || self.email
   end
 
-  def timeline_shouts
-    Shout.where(user_id: followed_user_ids + [id])
-  end
-
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

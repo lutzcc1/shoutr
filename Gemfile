@@ -27,6 +27,7 @@ gem 'devise'
 gem 'cloudinary'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'byebug'
+gem "view_component", require: "view_component/engine"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

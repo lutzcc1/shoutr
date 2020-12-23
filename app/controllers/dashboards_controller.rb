@@ -2,7 +2,6 @@ class DashboardsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @shout = Shout.new
-    @shouts = current_user.timeline_shouts
+    @dashboard_timeline = TimelineComponent.new(current_user.followed_users + [current_user])
   end
 end
