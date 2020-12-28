@@ -26,4 +26,6 @@ Rails.application.routes.draw do
       delete "unfollow" => "followed_users#destroy"
     end
   end
+
+  resources :hashtags, only: [:show]
 end
