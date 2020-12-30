@@ -1,10 +1,10 @@
 class Search
-  attr_reader :term
-  def initialize(term:)
-    @term = term
+  attr_reader :keyword
+  def initialize(keyword)
+    @keyword = keyword
   end
 
   def run
-    Shout.joins("LEFT JOIN text_shouts ON content_type = 'TextShout' AND content_id = text_shouts.id").where("text_shouts.body LIKE ?", "%##{term}%")
+    ShoutSearchQuery.new(term: keyword).to_relation
   end
 end
