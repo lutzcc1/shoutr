@@ -1,7 +1,7 @@
 class HashtagsController < ApplicationController
   def show
     @hashtag = hashtag
-    @hashtag_timeline = TimelineComponent.new(hashtag: @hashtag)
+    @hashtag_timeline = TimelineComponent.new(keyword: @hashtag)
   end
 
   private

@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 class TimelineComponent < ViewComponent::Base
-  def initialize(users: nil, hashtag: nil)
+  def initialize(users: nil, keyword: nil)
     @users = users
-    @hashtag = hashtag
+    @keyword = keyword
     @timeline_shouts = timeline_shouts.order(created_at: :desc)
   end
 
   private
 
-  attr_accessor :users, :hashtag
+  attr_accessor :users, :keyword
 
   def timeline_shouts
-    if users && hashtag.nil?
+    if users && keyword.nil?
       Shout.where(user: users)
-    elsif hashtag && users.nil?
-      Search.new(hashtag).run
+    elsif keyword && users.nil?
+      Search.new(keyword).run
     end
   end
 end
