@@ -15,7 +15,7 @@ class TimelineComponent < ViewComponent::Base
     if users && hashtag.nil?
       Shout.where(user: users).order(created_at: :desc)
     elsif hashtag && users.nil?
-      Shout.joins("LEFT JOIN text_shouts ON content_type = 'TextShout' AND content_id = text_shouts.id").where("text_shouts.body LIKE ?", "%##{hashtag}%")
+      Search.new(term: hashtag).run
     end
   end
 end
